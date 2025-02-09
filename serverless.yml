@@ -1,0 +1,45 @@
+service: serverless-api
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: Items
+
+functions:
+  api:
+    handler: handler.lambda_handler
+    events:
+      - http:
+          path: items
+          method: get
+      - http:
+          path: items
+          method: post
+      # Uncomment or extend the endpoints below for additional CRUD operations:
+      #- http:
+      #    path: items/{id}
+      #    method: get
+      #- http:
+      #    path: items/{id}
+      #    method: put
+      #- http:
+      #    path: items/{id}
+      #    method: delete
+
+resources:
+  Resources:
+    ItemsDynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Items
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
