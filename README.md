@@ -48,11 +48,10 @@ The Serverless API allows you to perform basic operations (such as reading and w
 ---
 
 ## Project Structure
-```
+
 
 serverless-api/ ├── README.md # Project documentation ├── handler.py # Lambda function code containing API logic ├── serverless.yml # Serverless Framework configuration ├── requirements.txt # (Optional) Python dependencies └── tests/ └── test_handler.py # Tests for the Lambda function
 
-```
 ---
 
 ## Prerequisites
